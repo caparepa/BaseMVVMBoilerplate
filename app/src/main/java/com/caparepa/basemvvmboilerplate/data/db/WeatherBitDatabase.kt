@@ -5,6 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.caparepa.basemvvmboilerplate.data.db.dao.CurrentWeatherDao
+import com.caparepa.basemvvmboilerplate.data.db.dao.FutureWeatherDao
+import com.caparepa.basemvvmboilerplate.data.db.dao.WeatherDescriptionDao
 import com.caparepa.basemvvmboilerplate.data.db.entity.current.CurrentWeatherData
 import com.caparepa.basemvvmboilerplate.data.db.entity.current.WeatherDescription
 import com.caparepa.basemvvmboilerplate.data.db.entity.forecast.ForecastWeatherData
@@ -23,9 +26,9 @@ import com.caparepa.basemvvmboilerplate.utils.LocalDateConverter
 @TypeConverters(LocalDateConverter::class)
 abstract class WeatherBitDatabase : RoomDatabase() {
 
-    /*abstract fun getCurrentWeatherDataDao() : CurrentWeatherDataDao
+    abstract fun getCurrentWeatherDataDao() : CurrentWeatherDao
     abstract fun getWeatherDescriptionDao() : WeatherDescriptionDao
-    abstract fun getFutureWeatherDao() : FutureWeatherDao*/
+    abstract fun getFutureWeatherDao() : FutureWeatherDao
 
     //We create a companion object that will act as singleton in order to create a single instance
     //of the database
