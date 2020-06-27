@@ -1,4 +1,4 @@
-package com.caparepa.basemvvmboilerplate.data.db.entity
+package com.caparepa.basemvvmboilerplate.data.db
 
 import android.content.Context
 import androidx.room.Database
