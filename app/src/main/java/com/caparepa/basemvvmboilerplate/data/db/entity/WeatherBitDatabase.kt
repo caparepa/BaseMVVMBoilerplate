@@ -21,7 +21,7 @@ import com.caparepa.basemvvmboilerplate.utils.LocalDateConverter
     version = 1
 )
 @TypeConverters(LocalDateConverter::class)
-abstract class WeatherDatabase : RoomDatabase() {
+abstract class WeatherBitDatabase : RoomDatabase() {
 
     /*abstract fun getCurrentWeatherDataDao() : CurrentWeatherDataDao
     abstract fun getWeatherDescriptionDao() : WeatherDescriptionDao
@@ -33,7 +33,7 @@ abstract class WeatherDatabase : RoomDatabase() {
 
         //@Volatile annotation allows all of the threads to have access to the property (instance)
         @Volatile
-        private var instance: WeatherDatabase? = null
+        private var instance: WeatherBitDatabase? = null
 
         //Lock object for the threads
         private val LOCK = Any()
@@ -59,7 +59,7 @@ abstract class WeatherDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(
                 context.applicationContext,
-                WeatherDatabase::class.java, "bitweather.db"
+                WeatherBitDatabase::class.java, "bitweather.db"
             ).build()
 
     }
