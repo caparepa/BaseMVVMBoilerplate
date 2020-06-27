@@ -16,6 +16,44 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    dexOptions {
+        preDexLibraries true
+        javaMaxHeapSize "2g"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    /**
+     * In order to use the signingOptions, the corresponding keystore files must be generated
+     */
+
+    signingConfigs {
+        debug {
+            /*storeFile file('../keystore-debug.jks')
+            storePassword '123456'
+            keyAlias 'keystore-debug'
+            keyPassword '123456'*/
+        }
+        release {
+            /*storeFile file('../keystore-release.jks')
+            storePassword '123456'
+            keyAlias 'keystore-release'
+            keyPassword '123456'*/
+        }
+    }
+
+    lintOptions {
+        abortOnError true
+    }
+
+    FileCollection proguardFileCollection = files(
+            file('../proguard.cfg'),
+            getDefaultProguardFile('proguard-android.txt')
+    )
+
     buildTypes {
         release {
             minifyEnabled false
