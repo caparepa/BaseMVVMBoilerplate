@@ -56,9 +56,56 @@ android {
     )
 
     buildTypes {
-        release {
+
+        debug {
+            versionNameSuffix "-${getCurrentGitBranchName()}"
+
+            applicationIdSuffix '.debug'
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            zipAlignEnabled false // this is default for debug
+            signingConfig signingConfigs.debug
+
+            buildConfigField "String", "WEATHERBIT_BASE_URL", "\"http://api.weatherbit.io/v2.0/\""
+            buildConfigField "String", "WEATHERBIT_API_KEY", WEATHERBIT_API_KEY
+            buildConfigField "String", "GIT_SHA", "\"${getGitSHA()}\""
+
+            resValue "string", "application_id", android.defaultConfig.applicationId + applicationIdSuffix
+            resValue "string", "google_maps_key", "HERE GOES YOUR GOOGLE MAPS KEY"
+        }
+
+        debugMinified.initWith(buildTypes.debug)
+        debugMinified {
+            minifyEnabled true
+            proguardFiles proguardFileCollection.getFiles().toArray()
+        }
+
+        debugStaging {
+            initWith debug
+            applicationIdSuffix '.debugstaging'
+
+            minifyEnabled true
+            proguardFiles proguardFileCollection.getFiles().toArray()
+
+            buildConfigField "String", "WEATHERBIT_BASE_URL", "\"http://api.weatherbit.io/v2.0/\""
+            buildConfigField "String", "WEATHERBIT_API_KEY", WEATHERBIT_API_KEY
+            buildConfigField "String", "GIT_SHA", "\"${getGitSHA()}\""
+
+            resValue "string", "application_id", android.defaultConfig.applicationId + applicationIdSuffix
+            resValue "string", "google_maps_key", "HERE GOES YOUR GOOGLE MAPS KEY"
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles proguardFileCollection.getFiles().toArray()
+            signingConfig signingConfigs.release
+            zipAlignEnabled true // this is default for release
+
+            buildConfigField "String", "WEATHERBIT_BASE_URL", "\"http://api.weatherbit.io/v2.0/\""
+            buildConfigField "String", "WEATHERBIT_API_KEY", WEATHERBIT_API_KEY
+            buildConfigField "String", "GIT_SHA", "\"${getGitSHA()}\""
+
+            resValue "string", "application_id", android.defaultConfig.applicationId + applicationIdSuffix
+            resValue "string", "google_maps_key", "HERE GOES YOUR GOOGLE MAPS KEY"
         }
     }
 }
