@@ -14,7 +14,7 @@ class RetrofitFactory {
         //TODO: since every single request needs to send the "key" key for auth,
         //TODO: we create an Interceptor for injecting said value to the request
         val requestInterceptor = Interceptor { chain ->
-            //Inject the access_key value to the request url
+             //Inject the access_key value to the request url
             val mUrl = chain.request()
                 .url
                 .newBuilder()
